@@ -6,9 +6,10 @@
   :license  "Artistic"
   :version "0.0.1"
   :serial t
-  :depends-on (#:fiveam)
+  :depends-on (#:alexandria #:fiveam)
   :components ((:file "package")
-               (:file "utils"))
+               (:file "utils")
+               (:file "day1"))
   :in-order-to ((test-op (test-op #:advent2020/test))))
 
 (asdf:defsystem #:advent2020/test
