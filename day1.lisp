@@ -11,7 +11,7 @@
      (lambda (lst)
        (if (= 2020 (apply #'+ lst))
            (setf result (apply #'* lst)))) 
-     (READ-REPORT) :length 2)
+     (read-report) :length 2)
     result))
 
 (defun day1/solution2 ()
@@ -20,6 +20,6 @@
      (lambda (lst)
        (if (= 2020 (apply #'+ lst))
            (setf result (apply #'* lst)))) 
-     (READ-REPORT) :length 3)
+     (read-report) :length 3)
     result))
 
