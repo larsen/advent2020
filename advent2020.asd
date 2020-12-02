@@ -6,7 +6,7 @@
   :license  "Artistic"
   :version "0.0.1"
   :serial t
-  :depends-on (#:alexandria #:fiveam)
+  :depends-on (#:alexandria #:cl-ppcre #:fiveam)
   :components ((:file "package")
                (:file "utils")
                (:file "day1"))
