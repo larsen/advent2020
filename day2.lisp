@@ -23,10 +23,8 @@
 
 (defun password-valid-positional-p (letter pos1 pos2 password)
   (let ((password-as-list (coerce password 'list)))
-    (or (and (char= letter (nth (- pos1 1) password-as-list))
-             (char/= letter (nth (- pos2 1) password-as-list)))
-        (and (char= letter (nth (- pos2 1) password-as-list))
-             (char/= letter (nth (- pos1 1) password-as-list))))))
+    (alexandria:xor (char= letter (nth (- pos1 1) password-as-list))
+                    (char= letter (nth (- pos2 1) password-as-list)))))
 
 (defun day2/solution2 ()
   (let ((passwords-and-policies (read-passwords-and-policies)))
