@@ -9,7 +9,9 @@
   :depends-on (#:alexandria #:cl-ppcre #:fiveam)
   :components ((:file "package")
                (:file "utils")
-               (:file "day1"))
+               (:file "day1")
+               (:file "day2")
+               (:file "day3"))
   :in-order-to ((test-op (test-op #:advent2020/test))))
 
 (asdf:defsystem #:advent2020/test

@@ -10,3 +10,7 @@
 (test day2
   (is (= (day2/solution1) 542))
   (is (= (day2/solution2) 360)))
+
+(test day3
+  (is (= (day3/solution1) 286))
+  (is (= (day3/solution2) 3638606400)))
