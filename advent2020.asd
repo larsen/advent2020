@@ -6,7 +6,7 @@
   :license  "Artistic"
   :version "0.0.1"
   :serial t
-  :depends-on (#:alexandria #:cl-ppcre #:fiveam)
+  :depends-on (#:alexandria #:cl-ppcre #:split-sequence #:fiveam)
   :components ((:file "package")
                (:file "utils")
                (:file "day1")
@@ -14,7 +14,8 @@
                (:file "day3")
                (:file "day4")
                (:file "day5")
-               (:file "day6"))
+               (:file "day6")
+               (:file "day7"))
   :in-order-to ((test-op (test-op #:advent2020/test))))
 
 (asdf:defsystem #:advent2020/test
