@@ -1,7 +1,7 @@
 ;;;; package.lisp
 
 (defpackage #:advent2020
-  (:use #:cl #:cl-ppcre #:split-sequence)
+  (:use #:cl #:cl-ppcre #:alexandria #:split-sequence)
   (:export day1/solution1
            day1/solution2
 
@@ -21,7 +21,10 @@
            day6/solution2
 
            day7/solution1
-           day7/solution2))
+           day7/solution2
+
+           day8/solution1
+           day8/solution2))
 
 (defpackage #:advent2020/test
   (:use #:cl
