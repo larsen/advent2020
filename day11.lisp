@@ -25,18 +25,18 @@
                                (< adj-row max-row))
                        collect (aref layout adj-col adj-row)))))
 
-(defun next-state (layout)
+(defun next-state (layout &key allocator seat-threshold)
   (let ((new-layout (make-array (array-dimensions layout))))
     (loop for col from 0 below (array-dimension new-layout 0)
           do (loop for row from 0 below (array-dimension new-layout 1)
                    do (setf (aref new-layout col row)
                             (case (aref layout col row)
-                              (#\L (if (= 0 (count-adjacent-occupied-seat
+                              (#\L (if (= 0 (funcall allocator
                                              col row layout))
                                        #\#
                                        #\L))
-                              (#\# (if (>= (count-adjacent-occupied-seat
-                                             col row layout) 4)
+                              (#\# (if (>= (funcall allocator
+                                             col row layout) seat-threshold)
                                        #\L
                                        #\#))
                               (otherwise
@@ -52,7 +52,9 @@
   (let ((layout (read-seats-layout))
         (last-iteration-count nil))
     (loop do (setf last-iteration-count (count-occupied-seats layout))
-             (setf layout (next-state layout))
+             (setf layout (next-state layout
+                                      :allocator #'count-adjacent-occupied-seat
+                                      :seat-threshold 4))
              when (= last-iteration-count (count-occupied-seats layout))
                do (return-from day11/solution1 last-iteration-count))))
 
@@ -80,28 +82,12 @@
                                        return (aref layout adj-col adj-row)
                                      until (not (valid-coords adj-col adj-row))))))))
 
-(defun next-state-tolerant (layout)
-  (let ((new-layout (make-array (array-dimensions layout))))
-    (loop for col from 0 below (array-dimension new-layout 0)
-          do (loop for row from 0 below (array-dimension new-layout 1)
-                   do (setf (aref new-layout col row)
-                            (case (aref layout col row)
-                              (#\L (if (= 0 (count-visible-occupied-seat
-                                             col row layout))
-                                       #\#
-                                       #\L))
-                              (#\# (if (>= (count-visible-occupied-seat
-                                             col row layout) 5)
-                                       #\L
-                                       #\#))
-                              (otherwise
-                               (aref layout col row))))))
-    new-layout))
-
 (defun day11/solution2 ()
   (let ((layout (read-seats-layout))
         (last-iteration-count nil))
     (loop do (setf last-iteration-count (count-occupied-seats layout))
-             (setf layout (next-state-tolerant layout))
+             (setf layout (next-state layout
+                                      :allocator #'count-visible-occupied-seat
+                                      :seat-threshold 5))
              when (= last-iteration-count (count-occupied-seats layout))
                do (return-from day11/solution2 last-iteration-count))))
