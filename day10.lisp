@@ -24,20 +24,16 @@
   (chain-using 0 (list 0) available))
 
 (defun diff (chain)
-  (let ((diff-1 0)
-        (diff-3 1))
-    (loop for n from 1 below (length chain)
-          when (= 3 (- (nth n chain)
-                       (nth (- n 1) chain)))
-            do (incf diff-3)
-          when (= 1 (- (nth n chain)
-                       (nth (- n 1) chain)))
-            do (incf diff-1)
-          finally (return (cons diff-1 diff-3)))))
+  )
 
 (defun day10/solution1 ()
-  (* (car (diff (cons 0 (sort (read-numbers-day10) #'<))))
-     (cdr (diff (cons 0 (sort (read-numbers-day10) #'<))))))
+  (let ((chain (cons 0 (sort (read-numbers-day10) #'<))))
+    (loop for n from 1 below (length chain)
+          for difference = (- (nth n chain)
+                              (nth (- n 1) chain))
+          count (= difference 1) into diff-1
+          count (= difference 3) into diff-3
+          finally (return (* diff-1 (+ 1 diff-3))))))
 
 (defun suitable-for (joltage available)
   (remove-if-not
