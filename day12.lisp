@@ -23,8 +23,7 @@
                       (180 (decf pos-x param))
                       (270 (decf pos-y param))))
                ("R" (setf heading (mod (- heading param) 360)))
-               ("L" (setf heading (mod (+ heading param) 360)))
-               ))
+               ("L" (setf heading (mod (+ heading param) 360)))))
     (+ (abs pos-x)
        (abs pos-y))))
 
@@ -41,24 +40,16 @@
                ("E" (incf waypoint-delta-x param))
                ("F" (incf pos-x (* waypoint-delta-x param))
                     (incf pos-y (* waypoint-delta-y param)))
-               ("L" (let ((temp-x waypoint-delta-x)
-                          (temp-y waypoint-delta-y))
-                      (case param
-                        (90 (setf waypoint-delta-x (* temp-y -1)
-                                  waypoint-delta-y temp-x))
-                        (180 (setf waypoint-delta-x (* temp-x -1)
-                                   waypoint-delta-y (* temp-y -1)))
-                        (270 (setf waypoint-delta-x temp-y
-                                   waypoint-delta-y (* temp-x -1))))))
-               ("R" (let ((temp-x waypoint-delta-x)
-                          (temp-y waypoint-delta-y))
-                      (case param
-                        (90 (setf waypoint-delta-x temp-y
-                                  waypoint-delta-y (* temp-x -1)))
-                        (180 (setf waypoint-delta-x (* temp-x -1)
-                                   waypoint-delta-y (* temp-y -1)))
-                        (270 (setf waypoint-delta-x (* temp-y -1)
-                                  waypoint-delta-y temp-x)))))))
+               ("L" (loop repeat (mod (/ param 90) 4)
+                          do (let ((temp-x waypoint-delta-x)
+                                   (temp-y waypoint-delta-y))
+                               (setf waypoint-delta-x (* temp-y -1)
+                                     waypoint-delta-y temp-x))))
+               ("R" (loop repeat (mod (/ param 90) 4)
+                          do (let ((temp-x waypoint-delta-x)
+                                   (temp-y waypoint-delta-y))
+                               (setf waypoint-delta-x temp-y
+                                     waypoint-delta-y (* temp-x -1)))))))
     (+ (abs pos-x)
        (abs pos-y))))
 
