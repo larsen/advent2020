@@ -38,3 +38,15 @@
 (test day9
   (is (= (day9/solution1) 22477624))
   (is (= (day9/solution2) 2980044)))
+
+(test day10
+  (is (= (day10/solution1) 3000))
+  (is (= (day10/solution2) 193434623148032)))
+
+(test day11
+  (is (= (day11/solution1) 2238))
+  (is (= (day11/solution2) 2013)))
+
+(test day12
+  (is (= (day12/solution1) 1007))
+  (is (= (day12/solution2) 41212)))

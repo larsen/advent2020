@@ -24,7 +24,6 @@
   (path-using graph start end (list start)))
 
 (defun day7/solution1 ()
-  (setf g-solutions (make-hash-table :test 'equal))
   (let ((graph (read-bag-rules))
         (solutions 0))
     (loop for color being the hash-keys of graph
