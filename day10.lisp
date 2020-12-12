@@ -23,9 +23,6 @@
           (chain-using next (cons next used) (remove next available)))))
   (chain-using 0 (list 0) available))
 
-(defun diff (chain)
-  )
-
 (defun day10/solution1 ()
   (let ((chain (cons 0 (sort (read-numbers-day10) #'<))))
     (loop for n from 1 below (length chain)
