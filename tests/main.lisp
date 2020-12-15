@@ -50,3 +50,15 @@
 (test day12
   (is (= (day12/solution1) 1007))
   (is (= (day12/solution2) 41212)))
+
+(test day13
+  (is (= (day13/solution1) 3606))
+  (is (= (day13/solution2) 379786358533423)))
+
+(test day14
+  (is (= (day14/solution1) 9879607673316))
+  (is (= (day14/solution2) 3435342392262)))
+
+(test day15
+  (is (= (day15/solution1) 387))
+  (is (= (day15/solution2) 6428)))
