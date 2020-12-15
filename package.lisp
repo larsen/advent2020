@@ -51,3 +51,8 @@
   (:use #:cl
         #:advent2020
         #:fiveam))
+
+(defpackage #:advent2020/test-parachute
+  (:use #:cl
+        #:advent2020
+        #:parachute))

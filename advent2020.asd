@@ -24,7 +24,7 @@
                (:file "day13")
                (:file "day14")
                (:file "day15"))
-  :in-order-to ((test-op (test-op #:advent2020/test))))
+  :in-order-to ((test-op (test-op #:advent2020/test-parachute))))
 
 (asdf:defsystem #:advent2020/test
   :depends-on (#:advent2020
@@ -32,3 +32,10 @@
   :components ((:module "tests"
                 :components ((:file "main"))))
   :perform (test-op (op _) (symbol-call :fiveam :run-all-tests)))
+
+(asdf:defsystem #:advent2020/test-parachute
+  :depends-on (#:advent2020
+               #:parachute)
+  :components ((:module "tests-parachute"
+                :components ((:file "main"))))
+  :perform (test-op (op _) (symbol-call :parachute :test :advent2020/test-parachute)))
